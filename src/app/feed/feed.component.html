@@ -1,0 +1,38 @@
+<h2>{{category.toUpperCase()}} Feed</h2>
+<select (change)="updateLimit()" [(ngModel)]="limit" placeholder="name">
+  <option value="5">5</option>
+  <option value="10">10</option>
+  <option value="25">25</option>
+</select>
+<div class="update-category">
+  <label>Feed Category:
+    <input (keyup.enter)="getFeed()" [(ngModel)]="category" placeholder="name" />
+    <button (click)="getFeed()">update</button>
+  </label>
+</div>
+<ul class="feed">
+  <li *ngFor="let feedEntry of dataSource">
+    <div (click)="getFeedEntry(feedEntry)">
+      <span class="badge">{{feedEntry.score}}</span>
+      <p>{{feedEntry.thumbnail}}</p>
+      <span>submitted in {{feedEntry.created}} by {{feedEntry.author}}</span>
+      <p>
+        <a href="{{feedEntry.permalink}}">
+          {{
+            feedEntry.num_comments < 2 ? 
+            feedEntry.num_comments + ' comment' : 
+            feedEntry.num_comments + ' comments' 
+          }}
+        </a>
+      </p>
+    </div>
+  </li>
+</ul>
+
+<div class="nav-buttons">
+  <span class="nextprev">view more:
+    <button class="prev-button" [hidden]="count === limit" (click)="goPrev()">‹ prev</button>
+    <span class="separator" [hidden]="count === limit"></span>
+    <button class="next-button" (click)="goNext()">next ›</button>
+  </span>
+</div>

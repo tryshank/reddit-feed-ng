@@ -1,0 +1,21 @@
+<div *ngIf="feedEntry">
+  <h2>{{feedEntry.score}}</h2>
+  <div>
+    <p>{{feedEntry.thumbnail}}</p>
+    <span class="tagline">submitted in {{feedEntry.created}} by {{feedEntry.author}}</span>
+    <div [hidden]="!feedEntry.selftext" class="selftext">
+      <p>{{feedEntry.selftext}}</p>
+    </div>
+    <p>
+      <a href="{{feedEntry.permalink}}">
+        {{
+          feedEntry.num_comments < 2 ? 
+          feedEntry.num_comments + ' comment' : 
+          feedEntry.num_comments + ' comments' 
+        }}
+      </a>
+    </p>
+  </div>
+  <app-comments></app-comments>
+  <button (click)="goBack()">go back</button>
+</div>

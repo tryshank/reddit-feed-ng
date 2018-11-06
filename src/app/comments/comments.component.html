@@ -1,0 +1,9 @@
+<div *ngIf="commentsService.comments.length">
+
+  <h2>Comments</h2>
+  <div *ngFor='let comment of commentsService.comments'>
+    <span class="tagline">{{comment.author}}</span>
+    <p>{{comment.text}}</p>
+  </div>
+
+</div>
